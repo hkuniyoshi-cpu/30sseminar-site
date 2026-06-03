@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大人の為の "酒の教養" - BAR 30's Room Seminars</title>
+
+    <!-- ★★★ ファビコン ★★★ -->
+    <link rel="icon" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png" type="image/png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Meiryo', 'sans-serif'],
+                        serif: ['Noto Serif JP', 'serif'],
+                        enSerif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        amber: {
+                            400: '#fbbf24', 500: '#f59e0b', 600: '#d97706',
+                            700: '#b45309', 800: '#92400e', 900: '#78350f',
+                        },
+                        gold: '#d4af37'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            background-image:
+                radial-gradient(circle at 0% 0%, rgba(51, 33, 21, 0.4), transparent 30%),
+                radial-gradient(circle at 100% 100%, rgba(66, 48, 15, 0.3), transparent 40%);
+            background-attachment: fixed;
+            color: #f3f4f6;
+            overflow-x: hidden;
+            width: 100%;
+        }
+        .gold-text {
+            background: linear-gradient(135deg, #e6c875 0%, #b38728 50%, #fbf5b7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .stair-card {
+            background: #121212;
+            border: 1px solid #2a2a2a;
+            box-shadow:
+                4px 4px 0px 0px rgba(180, 83, 9, 0.4),
+                8px 8px 0px 0px rgba(146, 64, 14, 0.2),
+                12px 12px 25px rgba(0,0,0,0.9);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .stair-card:hover {
+            transform: translate(-4px, -4px);
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow:
+                8px 8px 0px 0px rgba(245, 158, 11, 0.6),
+                12px 12px 0px 0px rgba(180, 83, 9, 0.4),
+                16px 16px 30px rgba(0,0,0,1);
+        }
+        .stair-card-premium {
+            background: #0a0a0a;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            box-shadow:
+                4px 4px 0px 0px rgba(217, 119, 6, 0.6),
+                8px 8px 0px 0px rgba(180, 83, 9, 0.4),
+                0px 0px 30px rgba(245, 158, 11, 0.1) inset,
+                15px 15px 30px rgba(0,0,0,0.9);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .stair-card-premium:hover {
+            transform: translate(-4px, -4px);
+            border-color: rgba(251, 191, 36, 0.8);
+            box-shadow:
+                8px 8px 0px 0px rgba(251, 191, 36, 0.8),
+                12px 12px 0px 0px rgba(217, 119, 6, 0.6),
+                0px 0px 50px rgba(245, 158, 11, 0.2) inset,
+                20px 20px 40px rgba(0,0,0,1);
+        }
+        @keyframes flow-wave {
+            from { stroke-dashoffset: 200; }
+            to   { stroke-dashoffset: 0; }
+        }
+        .animate-wave {
+            stroke-dasharray: 50 150;
+            animation: flow-wave 2.5s linear infinite;
+        }
+        @keyframes flow-wave-vertical {
+            from { stroke-dashoffset: 60; }
+            to   { stroke-dashoffset: 0; }
+        }
+        .animate-wave-vertical {
+            stroke-dasharray: 15 45;
+            animation: flow-wave-vertical 1.5s linear infinite;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen relative pb-16 md:pb-32">
+
+    <!-- ── Header ───────────────────────────────────────────── -->
+    <header class="relative pt-20 md:pt-24 pb-12 md:pb-16 px-4 text-center overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" alt="Bar Background" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-black via-[#050505]/80 to-[#050505]"></div>
+        </div>
+        <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+            <span class="px-4 md:px-5 py-1.5 border border-amber-900/50 rounded-sm text-xs md:text-sm tracking-[0.2em] mb-6 font-serif text-amber-500/80 bg-black/50 backdrop-blur-sm">
+                大人の為の "酒の教養" 超入門
+            </span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6 leading-tight whitespace-nowrap">
+                深く知るほど、お酒は楽しくなる
+            </h1>
+            <p class="text-gray-400 font-enSerif text-base sm:text-lg md:text-xl tracking-widest flex items-center gap-3 md:gap-4">
+                <span class="w-8 md:w-12 h-px bg-gray-600"></span>
+                BAR 30's Room
+                <span class="w-8 md:w-12 h-px bg-gray-600"></span>
+            </p>
+        </div>
+    </header>
+
+    <!-- ── Main ─────────────────────────────────────────────── -->
+    <main class="max-w-[1200px] mx-auto px-4 sm:px-6 relative z-10 pt-4 md:pt-10">
+
+        <div class="flex flex-col gap-y-2 md:gap-y-16 relative z-10">
+
+            <!-- ── STEP 1: 全てのお酒の基本 ─────────────────── -->
+            <div class="w-full md:w-5/12 self-start relative z-10 group mt-4 md:mt-0">
+                <div class="hidden md:block absolute -bottom-[4rem] left-[45%] w-[30%] h-[4rem] z-[-1]">
+                    <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" class="overflow-visible">
+                        <path d="M 0,0 C 0,50 100,50 100,100" fill="none" stroke="rgba(245,158,11,0.2)" stroke-width="2"/>
+                        <path d="M 0,0 C 0,50 100,50 100,100" fill="none" stroke="rgba(245,158,11,0.8)" stroke-width="2" class="animate-wave" style="filter:drop-shadow(0 0 5px rgba(245,158,11,0.8))"/>
+                    </svg>
+                </div>
+
+                <!-- ★ href を申込みフォームに変更 -->
+                <a href="https://30sseminar.search-mania.net/seminar_form.html?seminar=basic" class="block relative rounded-xl overflow-hidden stair-card">
+                    <div class="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity duration-700">
+                        <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bar Counter" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent"></div>
+                    <div class="relative z-10 p-6 md:p-8 flex flex-col h-full justify-end min-h-[260px] md:min-h-[300px]">
+                        <div class="mb-auto">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="font-enSerif text-amber-500/70 tracking-widest text-xs md:text-sm font-bold">STEP 01</span>
+                                <div class="flex items-center gap-1.5 bg-gray-900/60 border border-gray-700 px-2 py-1 rounded-md backdrop-blur-sm">
+                                    <span class="text-[10px] md:text-xs text-gray-300 tracking-wider">対象：初心者</span>
+                                    <div class="flex gap-0.5 text-amber-500/80">
+                                        <i data-lucide="star" class="w-3 h-3 md:w-3.5 md:h-3.5 fill-current"></i>
+                                        <i data-lucide="star" class="w-3 h-3 md:w-3.5 md:h-3.5 text-gray-600"></i>
+                                        <i data-lucide="star" class="w-3 h-3 md:w-3.5 md:h-3.5 text-gray-600"></i>
+                                        <i data-lucide="star" class="w-3 h-3 md:w-3.5 md:h-3.5 text-gray-600"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="font-serif text-xl md:text-3xl font-bold leading-snug mb-3 text-white">全てのお酒の基本が<br>1時間でわかる講座</h2>
+                            <p class="text-gray-300 text-xs md:text-sm">ワインもウイスキーも日本酒も、違いを1時間で説明できる人に。</p>
+                        </div>
+                        <div class="mt-6 pt-5 border-t border-gray-800 flex justify-between items-end">
+                            <div class="flex items-center gap-2 text-gray-300 bg-gray-900/80 px-2.5 py-1.5 rounded-md border border-gray-700">
+                                <i data-lucide="video" class="w-3.5 h-3.5 md:w-4 md:h-4"></i>
+                                <span class="text-xs md:text-sm tracking-wider font-bold">ZOOM</span>
+                            </div>
+                            <div class="text-2xl md:text-3xl font-serif font-bold text-white tracking-wide">¥3,900</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- モバイル接続線 -->
+            <div class="md:hidden flex justify-center py-2 relative z-10">
+                <svg width="30" height="40" viewBox="0 0 30 40" class="overflow-visible">
+                    <path d="M 15,0 C 30,13 0,27 15,40" fill="none" stroke="rgba(245,158,11,0.2)" stroke-width="2"/>
+                    <path d="M 15,0 C 30,13 0,27 15,40" fill="none" stroke="rgba(245,158,11,0.8)" stroke-width="2" class="animate-wave-vertical" style="filter:drop-shadow(0 0 4px rgba(245,158,11,0.8))"/>
+                </svg>
+            </div>
+
+            <!-- ── STEP 2: ワイン & ウイスキー ───────────────── -->
+            <div class="w-full md:w-8/12 self-start md:ml-[15%] relative z-20 group">
+                <div class="hidden md:block absolute -bottom-[4rem] left-[55%] w-[20%] h-[4rem] z-[-1]">
+                    <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" class="overflow-visible">
+                        <path d="M 0,0 C 0,50 100,50 100,100" fill="none" stroke="rgba(245,158,11,0.2)" stroke-width="2"/>
+                        <path d="M 0,0 C 0,50 100,50 100,100" fill="none" stroke="rgba(245,158,11,0.8)" stroke-width="2" class="animate-wave" style="filter:drop-shadow(0 0 5px rgba(245,158,11,0.8))"/>
+                    </svg>
+                </div>
+
+                <div class="flex flex-col md:flex-row gap-4 md:gap-8 relative">
+
+                    <!-- ★ ワイン -->
+                    <a href="https://30sseminar.search-mania.net/seminar_form.html?seminar=wine" class="flex-1 block relative rounded-xl overflow-hidden stair-card">
+                        <div class="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-700">
+                            <img src="https://images.unsplash.com/photo-1553361371-9b22f78e8b1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Wine" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/90 to-black/50"></div>
+                        <div class="relative z-10 p-5 md:p-6 flex flex-col h-full min-h-[240px] md:min-h-[300px]">
+                            <div class="flex flex-wrap items-center gap-2 mb-3">
+                                <span class="font-enSerif text-amber-500/70 tracking-widest text-xs font-bold">STEP 02</span>
+                                <div class="flex items-center gap-1.5 bg-gray-900/60 border border-gray-700 px-2 py-1 rounded-md backdrop-blur-sm">
+                                    <span class="text-[10px] text-gray-300 tracking-wider">対象：初〜中級 (初心者寄)</span>
+                                    <div class="flex gap-0.5 text-amber-500/80">
+                                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                        <i data-lucide="star" class="w-3 h-3 text-gray-600"></i>
+                                        <i data-lucide="star" class="w-3 h-3 text-gray-600"></i>
+                                        <i data-lucide="star" class="w-3 h-3 text-gray-600"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="font-serif text-lg md:text-xl font-bold mb-3 md:mb-4 text-white">1時間でワインが<br>分かるセミナー</h2>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-4 md:mb-6 flex-grow">
+                                なぜワインはこんなに難しいのか、ここを知れば簡単なワインの基本、オレンジワインとは、シャンパンとファッションブランド、アメリカワインの逆転劇、投資としてのワイン
+                            </p>
+                            <div class="pt-4 border-t border-gray-800 flex justify-between items-end">
+                                <div class="flex items-center gap-2 text-gray-300 bg-gray-900/80 px-2 py-1 rounded-md border border-gray-700">
+                                    <span class="text-xs font-bold tracking-wider">ZOOM</span>
+                                </div>
+                                <span class="text-lg md:text-xl font-serif font-bold text-white tracking-wide">¥6,800</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- ★ ウイスキー -->
+                    <a href="https://30sseminar.search-mania.net/seminar_form.html?seminar=whisky" class="flex-1 block relative rounded-xl overflow-hidden stair-card">
+                        <div class="absolute inset-0 opacity-30 group-hover:opacity-50 transition-opacity duration-700">
+                            <img src="https://images.unsplash.com/photo-1527281400683-1aae777175f8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Whisky" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/90 to-black/50"></div>
+                        <div class="relative z-10 p-5 md:p-6 flex flex-col h-full min-h-[240px] md:min-h-[300px]">
+                            <div class="flex flex-wrap items-center gap-2 mb-3">
+                                <span class="font-enSerif text-amber-500/70 tracking-widest text-xs font-bold">STEP 02</span>
+                                <div class="flex items-center gap-1.5 bg-gray-900/60 border border-gray-700 px-2 py-1 rounded-md backdrop-blur-sm">
+                                    <span class="text-[10px] text-gray-300 tracking-wider">対象：初〜中級 (初心者寄)</span>
+                                    <div class="flex gap-0.5 text-amber-500/80">
+                                        <i data-lucide="star" class="w-3 h-3 fill-current"></i>
+                                        <i data-lucide="star" class="w-3 h-3 text-gray-600"></i>
+                                        <i data-lucide="star" class="w-3 h-3 text-gray-600"></i>
+                                        <i data-lucide="star" class="w-3 h-3 text-gray-600"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="font-serif text-lg md:text-xl font-bold mb-3 md:mb-4 text-white">1時間でウイスキーが<br>学べるセミナー</h2>
+                            <p class="text-gray-400 text-xs leading-relaxed mb-4 md:mb-6 flex-grow">
+                                ウイスキーとは、世界5大ウイスキー、恥ずかしいウイスキーの注文例、割り方、詳しくなる飲み方、ジャパニーズウイスキーの高騰
+                            </p>
+                            <div class="pt-4 border-t border-gray-800 flex justify-between items-end">
+                                <div class="flex items-center gap-2 text-gray-300 bg-gray-900/80 px-2 py-1 rounded-md border border-gray-700">
+                                    <span class="text-xs font-bold tracking-wider">ZOOM</span>
+                                </div>
+                                <span class="text-lg md:text-xl font-serif font-bold text-white tracking-wide">¥6,800</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- モバイル接続線 -->
+            <div class="md:hidden flex justify-center py-2 relative z-10">
+                <svg width="30" height="40" viewBox="0 0 30 40" class="overflow-visible">
+                    <path d="M 15,0 C 30,13 0,27 15,40" fill="none" stroke="rgba(245,158,11,0.2)" stroke-width="2"/>
+                    <path d="M 15,0 C 30,13 0,27 15,40" fill="none" stroke="rgba(245,158,11,0.8)" stroke-width="2" class="animate-wave-vertical" style="filter:drop-shadow(0 0 4px rgba(245,158,11,0.8))"/>
+                </svg>
+            </div>
+
+            <!-- ── STEP 3: カクテル ───────────────────────────── -->
+            <div class="w-full md:w-7/12 self-start md:ml-[30%] lg:ml-[35%] relative z-30 group">
+
+                <!-- ★ カクテル -->
+                <a href="https://30sseminar.search-mania.net/seminar_form.html?seminar=cocktail" class="block relative rounded-xl overflow-hidden stair-card">
+                    <div class="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity duration-700">
+                        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cocktail" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/80 to-transparent"></div>
+                    <div class="relative z-10 p-6 md:p-8 flex flex-col h-full justify-end min-h-[260px] md:min-h-[300px]">
+                        <div class="mb-auto">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="font-enSerif text-amber-500/70 tracking-widest text-xs md:text-sm font-bold">STEP 03</span>
+                                <div class="flex items-center gap-1.5 bg-gray-900/60 border border-gray-700 px-2 py-1 rounded-md backdrop-blur-sm">
+                                    <span class="text-[10px] md:text-xs text-gray-300 tracking-wider">対象：初〜中級 (中級寄)</span>
+                                    <div class="flex gap-0.5 text-amber-500/80">
+                                        <i data-lucide="star" class="w-3 h-3 md:w-3.5 md:h-3.5 fill-current"></i>
+                                        <i data-lucide="star" class="w-3 h-3 md:w-3.5 md:h-3.5 fill-current"></i>
+                                        <i data-lucide="star" class="w-3 h-3 md:w-3.5 md:h-3.5 text-gray-600"></i>
+                                        <i data-lucide="star" class="w-3 h-3 md:w-3.5 md:h-3.5 text-gray-600"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <h2 class="font-serif text-xl md:text-3xl font-bold leading-snug mb-3 md:mb-4 text-white">カクテル体験セミナー</h2>
+                            <p class="text-gray-300 text-xs md:text-sm leading-relaxed">
+                                カクテルを実際に作って頂きます。<br>
+                                特別な方へのプレゼントカクテル。イベントでご自身がいくつかカクテルを出したい方への提案、企画制作
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-5 border-t border-gray-800 flex justify-between items-end">
+                            <div class="flex items-center gap-2 text-amber-400 bg-amber-900/20 px-2.5 py-1.5 rounded-md border border-amber-900/50">
+                                <i data-lucide="map-pin" class="w-3.5 h-3.5 md:w-4 md:h-4"></i>
+                                <span class="text-xs md:text-sm tracking-wider font-bold">対面</span>
+                            </div>
+                            <div class="text-2xl md:text-3xl font-serif font-bold text-white tracking-wide">¥15,000</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- ── SPECIAL PROGRAM ───────────────────────────────── -->
+        <div class="w-full pt-20 md:pt-32 pb-6 text-center relative z-40">
+            <div class="inline-flex items-center gap-4 mb-4">
+                <span class="w-12 md:w-20 h-px bg-gradient-to-r from-transparent to-amber-600/50"></span>
+                <span class="font-enSerif text-amber-500 tracking-widest text-sm md:text-base font-bold">SPECIAL PROGRAM</span>
+                <span class="w-12 md:w-20 h-px bg-gradient-to-l from-transparent to-amber-600/50"></span>
+            </div>
+            <h2 class="text-white font-serif text-2xl md:text-3xl font-bold tracking-wide mb-2">実践から学ぶ特別講習</h2>
+            <p class="text-gray-400 text-xs md:text-sm">趣味から知識探求まで、お酒の世界をもう一歩深く知りたい方へ</p>
+        </div>
+
+        <div class="w-full flex flex-col lg:flex-row gap-6 lg:gap-8 relative z-40">
+
+            <!-- ★ BAR実践3ヶ月 -->
+            <div class="flex-1 group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-amber-600/0 via-amber-500/20 to-amber-600/0 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition duration-1000 z-[-1]"></div>
+                <a href="https://30sseminar.search-mania.net/seminar_form.html?seminar=practice" class="block relative rounded-xl overflow-hidden stair-card-premium h-full">
+                    <div class="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-700 mix-blend-luminosity group-hover:mix-blend-normal">
+                        <img src="https://images.unsplash.com/photo-1555597673-b21d5c935865?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Bar Practice" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-[#050505]/90 to-black/30"></div>
+                    <div class="relative z-10 p-6 md:p-10 flex flex-col h-full justify-end min-h-[360px] md:min-h-[420px]">
+                        <div class="mb-auto">
+                            <div class="flex flex-wrap items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                                <span class="font-enSerif text-amber-400 tracking-widest text-xs md:text-sm font-bold">SPECIAL</span>
+                                <span class="bg-amber-900/40 text-amber-200 text-[10px] md:text-xs px-2.5 py-1 rounded border border-amber-500/40 font-bold tracking-wider">趣味〜探求</span>
+                            </div>
+                            <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-3 md:mb-4 gold-text drop-shadow-lg">
+                                学びから稼ぐまで<br>BAR実践3ヶ月！
+                            </h2>
+                            <p class="text-gray-300 text-xs md:text-sm leading-relaxed">
+                                "お客様"から"選ばれる側"へ。<br>
+                                BARの現場で学び、価値を生み、その対価を受け取る3ヶ月。<br>
+                                <span class="text-gray-400 block mt-2">（週1回、1日3〜4時間実際のBARに立ちながら学ぶ3ヶ月の実践講座。<br>ご自身で呼んだお客様の売上の50％は成果としてお渡しします。）</span>
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-5 border-t border-amber-900/50 flex justify-between items-end">
+                            <div class="bg-gradient-to-r from-[#1a1a1a] to-black border border-amber-500/40 px-3 md:px-4 py-2 md:py-2.5 rounded-lg flex items-center gap-2 shadow-2xl">
+                                <i data-lucide="store" class="w-4 h-4 md:w-5 md:h-5 text-amber-400"></i>
+                                <span class="text-xs md:text-sm font-bold text-amber-400 tracking-widest">実店舗実践</span>
+                            </div>
+                            <div class="text-2xl md:text-4xl font-serif font-bold text-white tracking-wide">¥150,000</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- ★ 7日間集中プログラム -->
+            <div class="flex-1 group">
+                <div class="absolute -inset-1 bg-gradient-to-r from-amber-600/0 via-amber-500/20 to-amber-600/0 rounded-xl blur-lg opacity-0 group-hover:opacity-100 transition duration-1000 z-[-1]"></div>
+                <a href="https://30sseminar.search-mania.net/seminar_form.html?seminar=intensive" class="block relative rounded-xl overflow-hidden stair-card-premium h-full">
+                    <div class="absolute inset-0 opacity-50 group-hover:opacity-70 transition-opacity duration-700 mix-blend-luminosity group-hover:mix-blend-normal">
+                        <img src="https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Professional Bartender" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-[#050505]/90 to-black/30"></div>
+                    <div class="relative z-10 p-6 md:p-10 flex flex-col h-full justify-end min-h-[360px] md:min-h-[420px]">
+                        <div class="mb-auto">
+                            <div class="flex flex-wrap items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                                <span class="font-enSerif text-amber-400 tracking-widest text-xs md:text-sm font-bold">SPECIAL</span>
+                                <span class="bg-red-900/80 text-red-100 text-[10px] md:text-xs px-2.5 py-1 rounded border border-red-500/50 font-bold tracking-wider shadow-[0_0_10px_rgba(220,38,38,0.5)]">本気の方限定</span>
+                            </div>
+                            <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl font-bold leading-tight mb-3 md:mb-4 gold-text drop-shadow-lg">
+                                バーテンダー<br>7日間集中プログラム
+                            </h2>
+                            <p class="text-gray-300 text-xs md:text-sm leading-relaxed">
+                                未経験〜経験1年未満、BARを任される予定の方、現場に立つために何をすればいいか7日でわかる。<br>
+                                オーナーバーテンダーが付きっきりで不安を取り除きます。
+                                <span class="text-gray-400 block mt-2">（短期集中で時間を買いたい方、自己流でやって失敗したくない方）</span>
+                            </p>
+                        </div>
+                        <div class="mt-6 pt-5 border-t border-amber-900/50 flex justify-end items-center">
+                            <div class="bg-gradient-to-r from-[#1a1a1a] to-black border border-amber-500/40 px-3 md:px-5 py-2.5 md:py-3 rounded-lg flex items-center gap-2 md:gap-3 shadow-2xl">
+                                <i data-lucide="monitor-smartphone" class="w-4 h-4 md:w-5 md:h-5 text-gray-400"></i>
+                                <span class="text-xs md:text-sm font-bold text-gray-200 tracking-widest">ZOOM</span>
+                                <span class="text-amber-500 font-bold px-0.5 md:px-1 text-sm md:text-base">＋</span>
+                                <i data-lucide="users" class="w-4 h-4 md:w-5 md:h-5 text-amber-400"></i>
+                                <span class="text-xs md:text-sm font-bold text-amber-400 tracking-widest">対面</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ── Footer ────────────────────────────────────────────── -->
+    <footer class="mt-20 md:mt-32 text-center relative z-10 pb-8 flex flex-col gap-2">
+        <p class="text-gray-600 text-xs md:text-sm font-serif">&copy; BAR 30's Room. All rights reserved.</p>
+        <p class="text-gray-500/70 text-[10px] md:text-xs font-sans tracking-widest uppercase">Produced by SearchMania Inc.</p>
+    </footer>
+
+    <!-- Toast（BAR実践3ヶ月クリック時） -->
+    <div id="toastMessage" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-5 py-3 md:px-6 md:py-4 rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.8)] opacity-0 transition-all duration-300 pointer-events-none z-50 flex items-center gap-3 border border-amber-900/50 translate-y-4 w-[90%] max-w-[320px]">
+        <div class="bg-amber-500/20 p-2 rounded-full border border-amber-500/30 shrink-0">
+            <i data-lucide="clock" class="w-4 h-4 md:w-5 md:h-5 text-amber-500"></i>
+        </div>
+        <div class="flex flex-col">
+            <span class="font-bold text-sm">近日公開予定</span>
+            <span class="text-xs text-gray-400">お申し込みページを準備中です</span>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // href="#" のカード（BAR実践3ヶ月）のみトースト表示
+        const toast = document.getElementById('toastMessage');
+        let toastTimeout;
+        document.querySelectorAll('a.step-link, a.block').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#' || href === '') {
+                    e.preventDefault();
+                    clearTimeout(toastTimeout);
+                    toast.classList.remove('opacity-0', 'translate-y-4');
+                    toast.classList.add('opacity-100', 'translate-y-0');
+                    toastTimeout = setTimeout(() => {
+                        toast.classList.remove('opacity-100', 'translate-y-0');
+                        toast.classList.add('opacity-0', 'translate-y-4');
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

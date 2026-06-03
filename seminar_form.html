@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セミナー申込み | 30's Room</title>
+
+<!-- ★★★ ファビコン ★★★ -->
+<link rel="icon" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png" type="image/png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Shippori+Mincho:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+/* ── Variables ───────────────────────────────────────── */
+:root {
+  --wine:       #7c1d38;
+  --wine-dark:  #58132a;
+  --wine-deep:  #3d0d1d;
+  --wine-light: #c4596e;
+  --gold:       #c9a84c;
+  --gold-light: #e8d5a3;
+  --cream:      #faf6f0;
+  --cream-dark: #f0e8dc;
+  --ink:        #1a1014;
+  --gray:       #6b5c62;
+  --border:     #d9c4c8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--cream);
+  min-height: 100vh;
+  font-family: 'Noto Serif JP', serif;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 60px;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg, transparent, transparent 39px,
+    rgba(124,29,56,.04) 39px, rgba(124,29,56,.04) 40px
+  );
+  pointer-events: none; z-index: 0;
+}
+
+/* ── Layout ──────────────────────────────────────────── */
+.container { max-width: 600px; width: 100%; position: relative; z-index: 1; }
+
+/* ── Header ──────────────────────────────────────────── */
+.header {
+  background: var(--wine-deep);
+  border-radius: 2px 2px 0 0;
+  padding: 52px 40px 44px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.header::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%,  rgba(201,168,76,.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(201,168,76,.10) 0%, transparent 60%);
+}
+.header-ornament {
+  width: 48px; height: 2px;
+  background: var(--gold);
+  margin: 0 auto 24px; position: relative;
+}
+.header-ornament::before,
+.header-ornament::after {
+  content: '◆'; position: absolute;
+  top: 50%; transform: translateY(-50%);
+  color: var(--gold); font-size: 8px; line-height: 1;
+}
+.header-ornament::before { right: calc(100% + 8px); }
+.header-ornament::after  { left:  calc(100% + 8px); }
+.header-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic; color: var(--gold-light);
+  font-size: 13px; letter-spacing: .18em;
+  margin-bottom: 12px; opacity: .85; position: relative;
+}
+.header h1 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: clamp(16px, 4vw, 21px);
+  font-weight: 700; color: #fff;
+  line-height: 1.7; letter-spacing: .07em; position: relative;
+}
+.header-organizer {
+  margin-top: 16px; color: var(--gold-light);
+  font-size: 12px; letter-spacing: .22em;
+  opacity: .75; position: relative;
+}
+.header-line {
+  width: 80px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 20px auto 0;
+}
+
+/* ── Card body ───────────────────────────────────────── */
+.card-body {
+  background: #fff;
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 2px 2px;
+}
+
+/* ── Notes ───────────────────────────────────────────── */
+.notes-section {
+  padding: 28px 36px;
+  background: #fdf9f5;
+  border-bottom: 1px solid var(--border);
+}
+.notes-section h3 {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: .22em; color: var(--wine);
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 8px;
+}
+.notes-section h3::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.notes-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.notes-list li {
+  font-size: 12.5px; line-height: 1.8;
+  color: #4a3840; padding-left: 16px; position: relative;
+}
+.notes-list li::before {
+  content: '─'; position: absolute; left: 0;
+  color: var(--wine-light); font-size: 10px; top: 5px;
+}
+.notes-alert {
+  margin-top: 14px; background: #fff5f5;
+  border: 1px solid #fecdd3; border-left: 3px solid #e11d48;
+  border-radius: 2px; padding: 12px 16px;
+  font-size: 12.5px; line-height: 1.8;
+  color: #9f1239; font-weight: 700; display: none;
+}
+.notes-alert i { margin-right: 6px; }
+
+/* ── Loading ─────────────────────────────────────────── */
+#loadingState { padding: 60px 36px; text-align: center; }
+.spinner {
+  width: 40px; height: 40px;
+  border: 3px solid var(--cream-dark);
+  border-top-color: var(--wine);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+  margin: 0 auto 20px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Form ────────────────────────────────────────────── */
+.form-section { padding: 36px 36px 40px; }
+.form-group   { margin-bottom: 24px; }
+.form-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 16px; margin-bottom: 24px;
+}
+label {
+  display: block; font-size: 11.5px; font-weight: 700;
+  letter-spacing: .1em; color: var(--ink); margin-bottom: 8px;
+}
+.badge {
+  display: inline-block; font-size: 9px;
+  padding: 2px 7px; border-radius: 2px;
+  margin-left: 6px; letter-spacing: .05em; font-weight: 700;
+}
+.badge-req { background: var(--wine); color: #fff; }
+.badge-opt { background: #e5e7eb; color: #6b7280; }
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+select, textarea {
+  width: 100%; padding: 12px 14px;
+  border: 1px solid var(--border); border-radius: 2px;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px; color: var(--ink);
+  background: var(--cream);
+  transition: border-color .2s, background .2s, box-shadow .2s;
+  appearance: none; -webkit-appearance: none;
+}
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+select:focus, textarea:focus {
+  outline: none; border-color: var(--wine-light);
+  background: #fff; box-shadow: 0 0 0 3px rgba(124,29,56,.08);
+}
+.sel-wrap { position: relative; }
+.sel-wrap::after {
+  content: '▾'; position: absolute;
+  right: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--wine-light); pointer-events: none; font-size: 14px;
+}
+textarea { resize: vertical; min-height: 90px; }
+.hint { font-size: 11px; color: var(--gray); margin-top: 5px; }
+
+/* ── No-date notice ──────────────────────────────────── */
+.no-date-notice {
+  padding: 14px 16px;
+  background: var(--cream);
+  border: 1px dashed var(--border); border-radius: 2px;
+  font-size: 12.5px; line-height: 1.8; color: var(--gray);
+  display: none;
+}
+
+/* ── Divider ─────────────────────────────────────────── */
+.divider {
+  display: flex; align-items: center; gap: 12px; margin: 28px 0;
+}
+.divider::before, .divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.divider span { font-size: 10px; letter-spacing: .25em; color: var(--gray); }
+
+/* ── Consent + Submit エリア ─────────────────────────── */
+.action-area {
+  margin-top: 28px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* 規約同意チェックボックス行 */
+.consent-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .15s;
+  user-select: none;
+}
+.consent-row:hover { background: var(--cream-dark); }
+
+/* カスタムチェックボックス */
+.check-box {
+  width: 22px; height: 22px; min-width: 22px;
+  border: 2px solid var(--border);
+  border-radius: 3px;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .2s, background .2s;
+  font-size: 13px; color: transparent;
+}
+.consent-row.checked .check-box {
+  border-color: var(--wine);
+  background: var(--wine);
+  color: #fff;
+}
+.consent-text {
+  font-size: 12.5px; line-height: 1.75; color: #4a3840; flex: 1;
+}
+.consent-link {
+  color: var(--wine); text-decoration: underline;
+  cursor: pointer; font-weight: 700;
+}
+.consent-link:hover { color: var(--wine-dark); }
+
+/* 決済ボタン行 */
+.submit-row {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+/* 決済ボタン本体 */
+.submit-btn {
+  flex: 1; padding: 20px;
+  background: #c8c8c8;       /* 未チェック時：グレー */
+  color: #fff;
+  border: none;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px; font-weight: 700; letter-spacing: .18em;
+  cursor: not-allowed;
+  transition: background .3s, letter-spacing .2s;
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  position: relative; overflow: hidden;
+}
+.submit-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,.15) 0%, transparent 60%);
+  opacity: 0; transition: opacity .3s;
+}
+/* チェック済み：アクティブ */
+.submit-btn.active {
+  background: var(--wine-deep);
+  cursor: pointer;
+}
+.submit-btn.active:hover { background: var(--wine); }
+.submit-btn.active:hover::before { opacity: 1; }
+.submit-btn.active:active { transform: scale(.99); }
+
+.submit-note {
+  text-align: center; font-size: 11px;
+  color: #9ca3af; margin-top: 10px; letter-spacing: .08em;
+}
+
+/* ── Error ───────────────────────────────────────────── */
+.error-banner {
+  margin: 0 36px 20px; padding: 12px 16px;
+  background: #fff5f5;
+  border: 1px solid #fecdd3; border-radius: 2px;
+  font-size: 12.5px; color: #9f1239; display: none;
+}
+
+/* ── Success ─────────────────────────────────────────── */
+#successState { padding: 60px 36px; text-align: center; display: none; }
+.success-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--wine-deep);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px; color: var(--gold); font-size: 24px;
+}
+.success-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 20px; font-weight: 700;
+  color: var(--ink); margin-bottom: 12px;
+}
+.success-text {
+  font-size: 13px; line-height: 1.9;
+  color: var(--gray); margin-bottom: 28px;
+}
+.square-link {
+  display: inline-block;
+  background: var(--wine-deep); color: #fff;
+  padding: 14px 32px; border-radius: 2px;
+  font-size: 13px; font-weight: 700; letter-spacing: .12em;
+  text-decoration: none; transition: background .2s;
+}
+.square-link:hover { background: var(--wine); }
+
+/* ── Footer ──────────────────────────────────────────── */
+footer {
+  margin-top: 32px; text-align: center;
+  font-size: 11px; color: #9ca3af;
+  letter-spacing: .1em; position: relative; z-index: 1;
+}
+footer a { color: var(--wine-light); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+.footer-links {
+  display: flex; justify-content: center;
+  gap: 20px; margin-top: 8px;
+}
+.footer-links button {
+  background: none; border: none;
+  color: var(--wine-light); font-size: 11px;
+  cursor: pointer; letter-spacing: .08em;
+  text-decoration: underline;
+  font-family: 'Noto Serif JP', serif; padding: 0;
+}
+.footer-links button:hover { color: var(--wine); }
+
+/* ── Modal ───────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed; inset: 0;
+  background: rgba(26,16,20,.65);
+  backdrop-filter: blur(4px); z-index: 200;
+  display: flex; align-items: center;
+  justify-content: center; padding: 20px;
+  opacity: 0; pointer-events: none; transition: opacity .25s;
+}
+.modal-overlay.open { opacity: 1; pointer-events: auto; }
+.modal-box {
+  background: #fff; border-radius: 4px;
+  max-width: 520px; width: 100%; max-height: 80vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 24px 60px rgba(0,0,0,.25);
+  transform: translateY(12px) scale(.98); transition: transform .25s;
+}
+.modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
+.modal-head {
+  padding: 20px 24px; border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  background: #fdf9f5; flex-shrink: 0;
+}
+.modal-head h3 {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: .1em; color: var(--ink);
+}
+.modal-close {
+  background: none; border: none; cursor: pointer;
+  color: var(--gray); font-size: 18px; line-height: 1;
+  padding: 4px; transition: color .15s;
+}
+.modal-close:hover { color: var(--wine); }
+.modal-body {
+  padding: 24px; overflow-y: auto;
+  font-size: 12.5px; line-height: 1.9;
+  color: #4a3840; flex: 1;
+}
+.modal-body::-webkit-scrollbar { width: 5px; }
+.modal-body::-webkit-scrollbar-track { background: var(--cream); }
+.modal-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+.modal-body h4 {
+  font-weight: 700; color: var(--ink);
+  margin: 18px 0 6px; font-size: 12.5px; letter-spacing: .06em;
+}
+.modal-body h4:first-child { margin-top: 0; }
+.modal-body p { margin-bottom: 4px; }
+.modal-body ul { list-style: disc; margin-left: 1.2em; line-height: 2; }
+.modal-foot {
+  padding: 16px 24px; border-top: 1px solid var(--border);
+  text-align: center; background: #fdf9f5; flex-shrink: 0;
+}
+.modal-foot button {
+  background: var(--wine-deep); color: #fff;
+  border: none; padding: 10px 32px; border-radius: 2px;
+  font-family: 'Shippori Mincho', serif;
+  font-size: 13px; font-weight: 700; letter-spacing: .12em;
+  cursor: pointer; transition: background .2s;
+}
+.modal-foot button:hover { background: var(--wine); }
+
+/* ── 受付停止バナー ──────────────────────────────────── */
+.closed-banner {
+  margin: 0 36px 28px;
+  padding: 20px 24px;
+  background: #fff5f5;
+  border: 2px solid #fecdd3;
+  border-radius: 3px;
+  text-align: center;
+  display: none;
+}
+.closed-banner .closed-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: var(--wine);
+  color: #fff;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.closed-banner .closed-title {
+  font-family: 'Shippori Mincho', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--wine-deep);
+  letter-spacing: .12em;
+  margin-bottom: 8px;
+}
+.closed-banner .closed-text {
+  font-size: 12.5px;
+  line-height: 1.85;
+  color: #4a3840;
+}
+
+/* 受付停止モード時のアクションエリア */
+.action-area.closed {
+  opacity: .45;
+  pointer-events: none;
+  filter: grayscale(.3);
+}
+
+/* ── Responsive ──────────────────────────────────────── */
+@media (max-width: 500px) {
+  .header { padding: 36px 24px 32px; }
+  .notes-section, .form-section { padding-left: 20px; padding-right: 20px; }
+  .form-row { grid-template-columns: 1fr; }
+  .error-banner { margin-left: 20px; margin-right: 20px; }
+  .submit-btn { font-size: 13px; letter-spacing: .1em; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ヘッダー -->
+  <div class="header">
+    <div class="header-ornament"></div>
+    <div class="header-sub">Seminar Registration</div>
+    <h1 id="headerTitle">読み込み中...</h1>
+    <div class="header-organizer" id="headerOrganizer"></div>
+    <div class="header-line"></div>
+  </div>
+
+  <div class="card-body">
+
+    <!-- 注意事項 -->
+    <div class="notes-section">
+      <h3>お申し込みの流れと注意事項</h3>
+      <ul class="notes-list" id="notesList"><li>読み込み中...</li></ul>
+      <div class="notes-alert" id="alertNote">
+        <i class="fas fa-exclamation-triangle"></i>
+        <span id="alertNoteText"></span>
+      </div>
+    </div>
+
+    <!-- エラーバナー -->
+    <div class="error-banner" id="errorBanner">
+      <i class="fas fa-exclamation-circle"></i>
+      <span id="errorText"></span>
+    </div>
+
+    <!-- ローディング -->
+    <div id="loadingState">
+      <div class="spinner"></div>
+      <p style="font-size:13px;color:var(--gray);letter-spacing:.1em">フォームを準備しています...</p>
+    </div>
+
+    <!-- フォーム -->
+    <form id="seminarForm" class="form-section" style="display:none" novalidate>
+
+      <input type="hidden" id="seminarId" name="seminar" value="">
+
+      <!-- 受付停止バナー（日程未設定のとき表示） -->
+      <div class="closed-banner" id="closedBanner" style="margin:0 0 28px">
+        <div class="closed-icon"><i class="fas fa-exclamation"></i></div>
+        <div class="closed-title">現在、お申し込みを受け付けておりません</div>
+        <div class="closed-text">
+          次回日程が決まり次第、公開いたします。<br>
+          お気軽にお問い合わせください。
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <label for="name">お名前 <span class="badge badge-req">必須</span></label>
+          <input type="text" id="name" name="name" required placeholder="山田 太郎">
+        </div>
+        <div>
+          <label for="tel">電話番号 <span class="badge badge-req">必須</span></label>
+          <input type="tel" id="tel" name="tel" required placeholder="090-1234-5678">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">メールアドレス <span class="badge badge-req">必須</span></label>
+        <input type="email" id="email" name="email" required placeholder="example@mail.com">
+        <p class="hint">※ 決済メールや詳細のご案内をお送りします</p>
+      </div>
+
+      <!-- 日程（管理設定シートに日程が入力されている場合のみ表示） -->
+      <div class="form-group" id="dateGroup" style="display:none">
+        <label for="dateSelect">参加希望日程 <span class="badge badge-req">必須</span></label>
+        <div class="sel-wrap">
+          <select id="dateSelect" name="date">
+            <option value="" disabled selected>日程を選択してください</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 日程がない場合の案内（スプレッドシートの日程欄が全て空欄のとき） -->
+      <div class="no-date-notice" id="noDateNotice">
+        <i class="fas fa-calendar-alt" style="color:var(--wine-light);margin-right:6px"></i>
+        お申し込み後、担当者よりメールにてスケジュールをご調整いたします。
+      </div>
+
+      <div class="form-group" style="margin-top:24px">
+        <label for="message">ご質問・メッセージ <span class="badge badge-opt">任意</span></label>
+        <textarea id="message" name="message" placeholder="主催者へのメッセージ等があればご自由にお書きください"></textarea>
+      </div>
+
+      <!-- ─── 同意チェック ＋ 決済ボタン（一体型）────────────── -->
+      <div class="action-area">
+
+        <!-- チェックボックス行 -->
+        <div class="consent-row" id="consentRow" onclick="toggleConsent()">
+          <div class="check-box" id="checkBox">
+            <i class="fas fa-check"></i>
+          </div>
+          <div class="consent-text">
+            <span class="consent-link" onclick="openModal('terms');event.stopPropagation()">利用規約</span>および
+            <span class="consent-link" onclick="openModal('privacy');event.stopPropagation()">プライバシーポリシー</span>
+            に同意します
+          </div>
+        </div>
+
+        <!-- 決済ボタン行 -->
+        <div class="submit-row">
+          <button type="submit" id="submitBtn" class="submit-btn" disabled>
+            <i class="fas fa-lock" style="font-size:13px;opacity:.7"></i>
+            <span>決済画面へ進む</span>
+            <i class="fas fa-arrow-right" style="font-size:13px"></i>
+          </button>
+        </div>
+      </div>
+
+      <p class="submit-note">上記に同意するとボタンが有効になります</p>
+
+    </form>
+
+    <!-- 送信完了（決済あり） -->
+    <div id="successState">
+      <div class="success-icon"><i class="fas fa-check"></i></div>
+      <div class="success-title" id="successTitle">決済画面へ移動しています</div>
+      <p class="success-text" id="successText">
+        お申し込みありがとうございます。<br>
+        まもなく決済ページへ移動します。<br>
+        自動で移動しない場合は下記をクリックしてください。
+      </p>
+      <a href="#" id="squareLink" class="square-link">決済ページへ進む →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- フッター -->
+<footer>
+  <p>主催：<span id="footerOrganizer">30's Room</span></p>
+  <div class="footer-links">
+    <button onclick="openModal('terms')">利用規約</button>
+    <button onclick="openModal('privacy')">プライバシーポリシー</button>
+  </div>
+  <p style="margin-top:8px">System by <a href="https://search-mania.net/" target="_blank" rel="noopener">SearchMania Inc.</a></p>
+</footer>
+
+<!-- モーダル -->
+<div class="modal-overlay" id="legalModal" onclick="closeModal()">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-head">
+      <h3 id="modalTitle"></h3>
+      <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot"><button onclick="closeModal()">閉じる</button></div>
+  </div>
+</div>
+
+<script>
+// ★★★ GASのウェブアプリURLをここに貼り付けてください ★★★
+var GAS_URL = 'https://script.google.com/macros/s/AKfycbxuzNy-nSuXNTzUIi86ehlqiluoNYIrfsaV1rIUqBJ7FJH-9BjoeGUwJpw5_o2LoZaS/exec';
+// ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★
+
+var currentSquareUrl = '';
+var currentSeminarId = 'basic';
+var consentChecked   = false;
+
+// ── URLパラメータからセミナーID取得 ──────────────────────────
+function getSeminarId() {
+  var params = new URLSearchParams(window.location.search);
+  var id     = params.get('seminar') || 'basic';
+  var valid  = ['basic','wine','whisky','cocktail','intensive','practice'];
+  return valid.indexOf(id) !== -1 ? id : 'basic';
+}
+
+// ── 設定の読み込み（JSONP方式でCORSを回避）─────────────────────
+function loadSettings() {
+  currentSeminarId = getSeminarId();
+  document.getElementById('seminarId').value = currentSeminarId;
+
+  if (!GAS_URL || GAS_URL.indexOf('ここに') !== -1) {
+    applySettings(demoSettings(currentSeminarId));
+    return;
+  }
+
+  // JSONP方式：scriptタグで読み込むことでCORSを回避
+  var callbackName = 'gasCallback_' + Date.now();
+  var timeout = setTimeout(function() {
+    console.warn('GAS読込タイムアウト。デモ表示します。');
+    cleanup();
+    applySettings(demoSettings(currentSeminarId));
+  }, 8000);
+
+  function cleanup() {
+    clearTimeout(timeout);
+    if (window[callbackName]) delete window[callbackName];
+    var el = document.getElementById('gasScript');
+    if (el) el.parentNode.removeChild(el);
+  }
+
+  window[callbackName] = function(data) {
+    cleanup();
+    if (data && !data.error) {
+      applySettings(data);
+    } else {
+      console.warn('GASエラー:', data ? data.error : '不明');
+      applySettings(demoSettings(currentSeminarId));
+    }
+  };
+
+  var script = document.createElement('script');
+  script.id  = 'gasScript';
+  script.src = GAS_URL
+    + '?seminar=' + currentSeminarId
+    + '&callback=' + callbackName
+    + '&_=' + Date.now();
+  script.onerror = function() {
+    cleanup();
+    console.warn('GASスクリプト読込失敗。デモ表示します。');
+    applySettings(demoSettings(currentSeminarId));
+  };
+  document.body.appendChild(script);
+}
+
+// ── デモ用設定 ────────────────────────────────────────────────
+var DEMO_SQUARE = {
+  'basic':     'https://square.link/u/lgTpDHep',
+  'wine':      'https://square.link/u/3hDTzX5q',
+  'whisky':    'https://square.link/u/12jCm04x',
+  'cocktail':  'https://square.link/u/0notLIo6',
+  'intensive': 'https://square.link/u/ZiiiWRHq',
+  'practice':  'https://square.link/u/TGUb1LG3'
+};
+var DEMO_TITLES = {
+  'basic':     '全てのお酒の基本が1時間でわかる講座',
+  'wine':      '1時間でワインがわかるセミナー',
+  'whisky':    '1時間でウイスキーが学べるセミナー',
+  'cocktail':  'カクテル体験セミナー',
+  'intensive': 'バーテンダー7日間集中プログラム',
+  'practice':  '学びから稼ぐまでBAR実践3ヶ月'
+};
+var DEMO_DATES = {
+  'basic':     ['5月10日(土) 19:00〜【第1回】','5月17日(土) 19:00〜【第2回】','5月24日(土) 19:00〜【第3回】'],
+  'wine':      [], 'whisky': [], 'cocktail': [], 'intensive': [], 'practice': []
+};
+function demoSettings(id) {
+  return {
+    seminarId: id,
+    title:     DEMO_TITLES[id] || 'セミナー申込みフォーム',
+    organizer: "30's Room",
+    squareUrl: DEMO_SQUARE[id] || '#',
+    notes: [
+      '本フォーム送信後、自動的にSquare決済画面へ移動します。決済の完了をもって、正式なお申し込み完了となります。',
+      'アルコールを提供するイベントの性質上、20歳未満の方への酒類提供はお断りいたします。',
+      'お車でご来場され、アルコールをお召し上がりになる場合は、必ず運転代行等の手配をお願いいたします。'
+    ],
+    alertNote: 'お申し込み・決済完了後のキャンセルによるご返金は一切致しかねます。日程をよくご確認の上お申し込みください。',
+    dates:     DEMO_DATES[id] || []
+  };
+}
+
+// ── 設定の適用 ────────────────────────────────────────────────
+function applySettings(s) {
+  document.getElementById('headerTitle').textContent     = s.title     || 'セミナー申込みフォーム';
+  document.getElementById('headerOrganizer').textContent = s.organizer ? '主催：' + s.organizer : '';
+  document.getElementById('footerOrganizer').textContent = s.organizer || '';
+  document.title = (s.title || 'セミナー') + ' | ' + (s.organizer || "30's Room");
+
+  // 注意事項
+  var list = document.getElementById('notesList');
+  list.innerHTML = '';
+  (s.notes || []).forEach(function(note) {
+    var li = document.createElement('li');
+    li.textContent = note;
+    list.appendChild(li);
+  });
+
+  // 赤字強調
+  if (s.alertNote) {
+    document.getElementById('alertNoteText').textContent = s.alertNote;
+    document.getElementById('alertNote').style.display   = 'block';
+  }
+
+  // 日程
+  // ※ intensive（7日間集中）と practice（BAR実践3ヶ月）は特別仕様：
+  //    日程項目を表示せず、いつでも申込可能、決済リンクなし
+  if (s.seminarId === 'intensive' || s.seminarId === 'practice') {
+    // 日程フォームを完全に非表示・必須も解除
+    document.getElementById('dateGroup').style.display = 'none';
+    document.getElementById('dateSelect').required = false;
+    document.getElementById('dateSelect').removeAttribute('name'); // 送信されないように
+    // 受付停止ロジックは適用しない
+  } else {
+    var dates = (s.dates || []).filter(function(d){ return !!d; });
+    if (dates.length > 0) {
+      // 日程あり → プルダウン表示
+      var sel = document.getElementById('dateSelect');
+      dates.forEach(function(d) {
+        var opt = document.createElement('option');
+        opt.value = d; opt.textContent = d;
+        sel.appendChild(opt);
+      });
+      document.getElementById('dateGroup').style.display = 'block';
+      sel.required = true;
+    } else {
+      // 日程なし → 受付停止状態にする
+      document.getElementById('closedBanner').style.display = 'block';
+      document.querySelector('.action-area').classList.add('closed');
+      var inputs = document.querySelectorAll('#seminarForm input, #seminarForm textarea, #seminarForm select');
+      inputs.forEach(function(el) { el.disabled = true; });
+      var btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.style.cursor = 'not-allowed';
+      window.__formClosed = true;
+    }
+  }
+
+  // intensive / practice はボタン文言も「決済画面へ進む」→「お申し込みを送信する」に変更
+  if (s.seminarId === 'intensive' || s.seminarId === 'practice') {
+    var btnEl = document.getElementById('submitBtn');
+    btnEl.innerHTML =
+      '<i class="fas fa-paper-plane" style="font-size:13px;opacity:.7"></i>' +
+      '<span>お申し込みを送信する</span>' +
+      '<i class="fas fa-arrow-right" style="font-size:13px"></i>';
+    var noteEl = document.querySelector('.submit-note');
+    if (noteEl) noteEl.textContent = '上記に同意するとボタンが有効になります（送信後、担当者よりご連絡いたします）';
+  }
+
+  // Square URL
+  currentSquareUrl = s.squareUrl || '#';
+  document.getElementById('squareLink').href = currentSquareUrl;
+
+  // フォーム表示
+  document.getElementById('loadingState').style.display = 'none';
+  document.getElementById('seminarForm').style.display  = 'block';
+}
+
+// ── 同意チェックボックスのトグル ──────────────────────────────
+function toggleConsent() {
+  consentChecked = !consentChecked;
+  var row = document.getElementById('consentRow');
+  var btn = document.getElementById('submitBtn');
+
+  if (consentChecked) {
+    row.classList.add('checked');
+    btn.disabled = false;
+    btn.classList.add('active');
+  } else {
+    row.classList.remove('checked');
+    btn.disabled = true;
+    btn.classList.remove('active');
+  }
+}
+
+// ── フォーム送信 ──────────────────────────────────────────────
+document.getElementById('seminarForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  // 受付停止中は何もしない
+  if (window.__formClosed) {
+    showError('現在、お申し込みを受け付けておりません。');
+    return;
+  }
+
+  if (!consentChecked) {
+    showError('利用規約・プライバシーポリシーへの同意が必要です。');
+    return;
+  }
+
+  var name  = document.getElementById('name').value.trim();
+  var tel   = document.getElementById('tel').value.trim();
+  var email = document.getElementById('email').value.trim();
+  var dateGrp = document.getElementById('dateGroup');
+  var date    = dateGrp.style.display !== 'none'
+                ? document.getElementById('dateSelect').value
+                : '';
+
+  if (!name || !tel || !email) {
+    showError('必須項目をすべてご入力ください。');
+    return;
+  }
+  if (dateGrp.style.display !== 'none' && !date) {
+    showError('参加希望日程を選択してください。');
+    return;
+  }
+  hideError();
+
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.classList.remove('active');
+  btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> 処理中...';
+
+  var params = new URLSearchParams(new FormData(this));
+
+  var doRedirect = function() {
+    document.getElementById('seminarForm').style.display  = 'none';
+    document.getElementById('successState').style.display = 'block';
+
+    // intensive / practice は決済リンクなし → 完了メッセージのみ表示
+    if (currentSeminarId === 'intensive' || currentSeminarId === 'practice') {
+      document.getElementById('successTitle').textContent = 'お申し込みを受け付けました';
+      document.getElementById('successText').innerHTML =
+        'ありがとうございます。<br>' +
+        '内容を確認後、担当者よりメールにて<br>' +
+        'スケジュール調整のご連絡をいたします。<br><br>' +
+        'しばらくお待ちください。';
+      // 決済リンクを非表示
+      var sqLink = document.getElementById('squareLink');
+      if (sqLink) sqLink.style.display = 'none';
+      // ページ自動遷移なし
+      return;
+    }
+
+    setTimeout(function() {
+      window.location.href = currentSquareUrl;
+    }, 800);
+  };
+
+  if (!GAS_URL || GAS_URL.indexOf('ここに') !== -1) {
+    doRedirect();
+    return;
+  }
+
+  fetch(GAS_URL, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body:    params.toString()
+  })
+  .then(function() { doRedirect(); })
+  .catch(function() {
+    showError('通信エラーが発生しました。少し待ってから再度お試しください。');
+    btn.disabled = false;
+    btn.classList.add('active');
+    btn.innerHTML = '<i class="fas fa-lock" style="font-size:13px;opacity:.7"></i><span>決済画面へ進む</span><i class="fas fa-arrow-right" style="font-size:13px"></i>';
+  });
+});
+
+function showError(msg) {
+  var el = document.getElementById('errorBanner');
+  document.getElementById('errorText').textContent = msg;
+  el.style.display = 'block';
+  el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+function hideError() {
+  document.getElementById('errorBanner').style.display = 'none';
+}
+
+// ── モーダル ──────────────────────────────────────────────────
+var legalContent = {
+  terms: {
+    title: '利用規約',
+    html:
+      '<h4>第1条（サービス内容）</h4>' +
+      "<p>本申込みフォームは、30's Room（以下「主催者」）が提供するセミナーへの参加申込みを受け付けるものです。</p>" +
+      '<h4>第2条（申込みの完了）</h4>' +
+      '<p>本フォームの送信後、Square決済画面にて決済が完了した時点をもって、正式なお申し込み完了となります。フォーム送信のみでは申込みは完了しません。</p>' +
+      '<h4>第3条（キャンセル・返金）</h4>' +
+      '<p>お申し込み・決済完了後のキャンセルによるご返金は、いかなる理由においても一切お断りしております。日程・内容を十分ご確認の上お申し込みください。</p>' +
+      '<h4>第4条（年齢制限）</h4>' +
+      '<p>本イベントはアルコールを提供するイベントの性質上、20歳未満の方への酒類提供はお断りいたします。参加にあたっては20歳以上であることを条件とします。</p>' +
+      '<h4>第5条（飲酒運転防止）</h4>' +
+      '<p>お車でご来場され、アルコールをお召し上がりになる場合は、必ず運転代行等の手配をお願いいたします。飲酒運転は法律で禁止されています。</p>' +
+      '<h4>第6条（免責）</h4>' +
+      '<p>主催者の責めに帰すべき事由によらない参加者の事故・損害について、主催者は責任を負いません。</p>' +
+      '<h4>第7条（規約の変更）</h4>' +
+      '<p>主催者は必要に応じて本規約を変更することがあります。変更後の規約はフォーム上に掲示した時点から効力を生じます。</p>'
+  },
+  privacy: {
+    title: 'プライバシーポリシー',
+    html:
+      '<h4>1. 個人情報の収集目的</h4>' +
+      "<p>主催者（30's Room）が取得するお名前、電話番号、メールアドレス、参加日程等の情報は、以下の目的で利用します。</p>" +
+      '<ul><li>セミナーのご予約確認・案内送付</li><li>決済情報の管理・照合</li><li>お問い合わせへの対応</li><li>今後のイベント・サービスに関するご案内（ご希望者のみ）</li></ul>' +
+      '<h4>2. 第三者への開示・委託</h4>' +
+      '<p>収集した個人情報は、本フォームのシステム運営・保守管理を委託している <strong>SearchMania Inc.</strong> と共有する場合があります。委託先に対しては適切な監督を行い、情報の機密保持を義務付けております。法令に基づく場合を除き、第三者への開示・提供は行いません。</p>' +
+      '<h4>3. 個人情報の管理</h4>' +
+      '<p>収集した情報は適切に管理し、不正アクセス・紛失・漏洩の防止に努めます。</p>' +
+      '<h4>4. 保存期間</h4>' +
+      '<p>個人情報はセミナー終了後、運営上必要な期間を経て適切に削除します。</p>' +
+      '<h4>5. お問い合わせ</h4>' +
+      "<p>個人情報の取扱いに関するお問い合わせは、主催者（30's Room）までお申し付けください。</p>" +
+      '<p style="margin-top:14px;font-size:11px;color:#9ca3af">制作・システム運営：<a href="https://search-mania.net/" target="_blank" style="color:#c4596e">SearchMania Inc.</a></p>'
+  }
+};
+
+function openModal(type) {
+  var c = legalContent[type];
+  document.getElementById('modalTitle').textContent = c.title;
+  document.getElementById('modalBody').innerHTML    = c.html;
+  document.getElementById('legalModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('legalModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── 初期化 ────────────────────────────────────────────────────
+loadSettings();
+</script>
+</body>
+</html>
