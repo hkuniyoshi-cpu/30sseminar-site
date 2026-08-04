@@ -1245,50 +1245,92 @@ footer .footer-credit a:hover { opacity: 0.7; }
                 <ellipse id="whiskyGloss" cx="40" cy="130" rx="20" ry="1.2"
                          fill="rgba(255,245,210,0.55)"/>
 
-                <!-- 氷1（大きめ・左後ろ）-->
-                <g id="ice1" transform="translate(28 82) rotate(-14)">
-                    <!-- 影 -->
+                <!-- 氷1（大きめ・左奥）-->
+                <g id="ice1" transform="translate(28 76) rotate(-14)">
                     <rect x="-9" y="-8" width="18" height="16" rx="2"
                           fill="rgba(0,0,0,0.35)" transform="translate(1 1)"/>
-                    <!-- 本体 -->
                     <rect x="-9" y="-8" width="18" height="16" rx="2"
                           fill="rgba(220,235,255,0.4)"
                           stroke="rgba(255,255,255,0.7)" stroke-width="0.7"/>
-                    <!-- 上面 -->
                     <path d="M -9,-8 L -5,-11 L 13,-11 L 9,-8 Z"
                           fill="rgba(240,248,255,0.55)"
                           stroke="rgba(255,255,255,0.75)" stroke-width="0.6"/>
-                    <!-- 右側面 -->
                     <path d="M 9,-8 L 13,-11 L 13,5 L 9,8 Z"
                           fill="rgba(180,200,220,0.35)"
                           stroke="rgba(255,255,255,0.5)" stroke-width="0.5"/>
-                    <!-- ハイライト光沢 -->
                     <line x1="-6" y1="-5" x2="-6" y2="4"
                           stroke="rgba(255,255,255,0.75)" stroke-width="0.9"/>
                     <circle cx="-3" cy="-4" r="1" fill="rgba(255,255,255,0.85)"/>
                 </g>
 
                 <!-- 氷2（小さめ・右手前）-->
-                <g id="ice2" transform="translate(50 90) rotate(22)">
-                    <!-- 影 -->
+                <g id="ice2" transform="translate(50 88) rotate(22)">
                     <rect x="-6" y="-5" width="12" height="11" rx="1.5"
                           fill="rgba(0,0,0,0.3)" transform="translate(1 1)"/>
-                    <!-- 本体 -->
                     <rect x="-6" y="-5" width="12" height="11" rx="1.5"
                           fill="rgba(220,235,255,0.42)"
                           stroke="rgba(255,255,255,0.7)" stroke-width="0.6"/>
-                    <!-- 上面 -->
                     <path d="M -6,-5 L -3,-7.5 L 9,-7.5 L 6,-5 Z"
                           fill="rgba(240,248,255,0.55)"
                           stroke="rgba(255,255,255,0.7)" stroke-width="0.5"/>
-                    <!-- 右側面 -->
                     <path d="M 6,-5 L 9,-7.5 L 9,3.5 L 6,6 Z"
                           fill="rgba(180,200,220,0.35)"
                           stroke="rgba(255,255,255,0.5)" stroke-width="0.4"/>
-                    <!-- ハイライト -->
                     <circle cx="-2" cy="-2" r="0.9" fill="rgba(255,255,255,0.85)"/>
                     <line x1="-4" y1="0" x2="-4" y2="4"
                           stroke="rgba(255,255,255,0.65)" stroke-width="0.7"/>
+                </g>
+
+                <!-- 氷3（中くらい・前中央下）-->
+                <g id="ice3" transform="translate(36 94) rotate(8)">
+                    <rect x="-7" y="-6" width="14" height="13" rx="1.8"
+                          fill="rgba(0,0,0,0.32)" transform="translate(1 1)"/>
+                    <rect x="-7" y="-6" width="14" height="13" rx="1.8"
+                          fill="rgba(215,232,250,0.42)"
+                          stroke="rgba(255,255,255,0.7)" stroke-width="0.65"/>
+                    <path d="M -7,-6 L -4,-8.5 L 10,-8.5 L 7,-6 Z"
+                          fill="rgba(240,248,255,0.55)"
+                          stroke="rgba(255,255,255,0.7)" stroke-width="0.55"/>
+                    <path d="M 7,-6 L 10,-8.5 L 10,4.5 L 7,7 Z"
+                          fill="rgba(180,200,220,0.35)"
+                          stroke="rgba(255,255,255,0.5)" stroke-width="0.45"/>
+                    <line x1="-4" y1="-3" x2="-4" y2="3"
+                          stroke="rgba(255,255,255,0.7)" stroke-width="0.8"/>
+                    <circle cx="0" cy="-3" r="0.9" fill="rgba(255,255,255,0.8)"/>
+                </g>
+
+                <!-- 氷4（小さめ・左下）-->
+                <g id="ice4" transform="translate(23 93) rotate(-24)">
+                    <rect x="-5" y="-4.5" width="10" height="9" rx="1.3"
+                          fill="rgba(0,0,0,0.28)" transform="translate(0.8 0.8)"/>
+                    <rect x="-5" y="-4.5" width="10" height="9" rx="1.3"
+                          fill="rgba(220,235,255,0.4)"
+                          stroke="rgba(255,255,255,0.7)" stroke-width="0.55"/>
+                    <path d="M -5,-4.5 L -2.5,-6.5 L 7,-6.5 L 5,-4.5 Z"
+                          fill="rgba(240,248,255,0.55)"
+                          stroke="rgba(255,255,255,0.7)" stroke-width="0.45"/>
+                    <path d="M 5,-4.5 L 7,-6.5 L 7,2.5 L 5,4.5 Z"
+                          fill="rgba(180,200,220,0.35)"
+                          stroke="rgba(255,255,255,0.5)" stroke-width="0.4"/>
+                    <circle cx="-1.5" cy="-1.5" r="0.7" fill="rgba(255,255,255,0.8)"/>
+                </g>
+
+                <!-- 氷5（小さめ・右上に半分埋もれ）-->
+                <g id="ice5" transform="translate(46 74) rotate(32)">
+                    <rect x="-5" y="-4.5" width="10" height="9" rx="1.3"
+                          fill="rgba(0,0,0,0.25)" transform="translate(0.8 0.8)"/>
+                    <rect x="-5" y="-4.5" width="10" height="9" rx="1.3"
+                          fill="rgba(215,232,250,0.4)"
+                          stroke="rgba(255,255,255,0.7)" stroke-width="0.55"/>
+                    <path d="M -5,-4.5 L -2.5,-6.5 L 7,-6.5 L 5,-4.5 Z"
+                          fill="rgba(240,248,255,0.55)"
+                          stroke="rgba(255,255,255,0.7)" stroke-width="0.45"/>
+                    <path d="M 5,-4.5 L 7,-6.5 L 7,2.5 L 5,4.5 Z"
+                          fill="rgba(180,200,220,0.35)"
+                          stroke="rgba(255,255,255,0.5)" stroke-width="0.4"/>
+                    <circle cx="-1" cy="-1" r="0.7" fill="rgba(255,255,255,0.8)"/>
+                    <line x1="-3" y1="1" x2="-3" y2="3"
+                          stroke="rgba(255,255,255,0.65)" stroke-width="0.6"/>
                 </g>
             </g>
 
@@ -1345,8 +1387,8 @@ footer .footer-credit a:hover { opacity: 0.7; }
         </h1>
 
         <p class="hero-sub" id="heroSub">
-            グラスの向こう側で、25年。<br>
-            数え切れない夜と、数え切れない乾杯を見届けてきた店主が、<br>
+            数え切れない夜と、数え切れない乾杯。<br>
+            そのすべてをカウンターの内側から見届けてきた店主が、<br>
             はじめて"教える側"にまわる時間。
         </p>
 
@@ -1687,8 +1729,26 @@ const BOTTOM_Y  = 104;   // グラス底のY座標
 const MAX_TOP_Y = 22;    // 満タン時の液面Y座標（縁より少し下で自然に見せる）
 const MAX_FILL  = BOTTOM_Y - MAX_TOP_Y;   // 満タン時の液体高さ (=82)
 
-const ice1 = document.getElementById('ice1');
-const ice2 = document.getElementById('ice2');
+// 氷キューブ定義：基準位置・基準角度・バブリング位相/速度
+const iceCubes = [
+  { el: document.getElementById('ice1'), baseX: 28, baseY: 76, baseR: -14, ph: 0.0, sp: 1.4 },
+  { el: document.getElementById('ice2'), baseX: 50, baseY: 88, baseR:  22, ph: 1.0, sp: 1.7 },
+  { el: document.getElementById('ice3'), baseX: 36, baseY: 94, baseR:   8, ph: 2.1, sp: 1.5 },
+  { el: document.getElementById('ice4'), baseX: 23, baseY: 93, baseR: -24, ph: 3.4, sp: 1.9 },
+  { el: document.getElementById('ice5'), baseX: 46, baseY: 74, baseR:  32, ph: 0.7, sp: 1.6 },
+];
+
+// スクロール速度検出（カラカラ振動用）
+let lastScrollY   = window.scrollY;
+let rattleEnergy  = 0;      // 振動エネルギー（0〜1）、スクロール時に上がり、時間で減衰
+
+window.addEventListener('scroll', () => {
+  const cur   = window.scrollY;
+  const delta = Math.abs(cur - lastScrollY);
+  // スクロール速度をエネルギーに加算（上限1）
+  rattleEnergy = Math.min(1, rattleEnergy + delta * 0.02);
+  lastScrollY  = cur;
+}, { passive: true });
 
 function updateWhisky() {
   const h = document.documentElement;
@@ -1702,17 +1762,31 @@ function updateWhisky() {
   whiskySurface.setAttribute('y', topY - 1);
   whiskyGloss.setAttribute('cy', topY);
 
-  // 液面のわずかなゆらぎ
-  const wobble = Math.sin(t * 3) * 0.4;
-  whiskyGloss.setAttribute('ry', 1 + Math.abs(wobble));
+  // 液面のゆらぎ（振動エネルギーで振幅が大きくなる）
+  const surfaceWobble = Math.sin(t * 3) * (0.4 + rattleEnergy * 2.5);
+  whiskyGloss.setAttribute('ry', 1 + Math.abs(surfaceWobble));
 
-  // 氷のバブリング（浮遊感）
-  const bob1 = Math.sin(t * 1.4) * 1.2;
-  const rot1 = -14 + Math.sin(t * 0.8) * 3;
-  const bob2 = Math.sin(t * 1.7 + 1) * 1.0;
-  const rot2 = 22  + Math.sin(t * 1.0 + 0.5) * 3;
-  ice1.setAttribute('transform', `translate(28 ${82 + bob1}) rotate(${rot1})`);
-  ice2.setAttribute('transform', `translate(50 ${90 + bob2}) rotate(${rot2})`);
+  // 振動エネルギーの減衰（スクロール停止後もふわっと収まる）
+  rattleEnergy *= 0.92;
+
+  // 各氷を更新：常時のふわふわ + スクロール時のカラカラ振動
+  iceCubes.forEach((c) => {
+    // 常時のバブリング（呼吸するような浮遊）
+    const bob    = Math.sin(t * c.sp + c.ph) * 1.1;
+    const rot    = c.baseR + Math.sin(t * c.sp * 0.6 + c.ph) * 3;
+
+    // カラカラ振動（ランダムな細かい振動、エネルギー比例）
+    // 各氷が別方向に暴れることで「カラン、カラン」と鳴っている感を出す
+    const rattleX = (Math.sin(t * 30 + c.ph * 5) + Math.sin(t * 47 + c.ph * 3)) * rattleEnergy * 1.4;
+    const rattleY = (Math.sin(t * 35 + c.ph * 4) + Math.cos(t * 41 + c.ph * 2)) * rattleEnergy * 1.2;
+    const rattleR = (Math.sin(t * 25 + c.ph * 6) + Math.cos(t * 38 + c.ph)) * rattleEnergy * 8;
+
+    const x = c.baseX + rattleX;
+    const y = c.baseY + bob + rattleY;
+    const r = rot + rattleR;
+
+    c.el.setAttribute('transform', `translate(${x} ${y}) rotate(${r})`);
+  });
 }
 window.addEventListener('scroll', updateWhisky, { passive: true });
 // 液面の常時ゆらぎ（呼吸するように）
