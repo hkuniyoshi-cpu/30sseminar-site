@@ -2,11 +2,42 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>セミナー申込み | 30's Room</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<!-- ★★★ ファビコン ★★★ -->
+<!-- SEO基本 -->
+<title>セミナー申込み | BAR 30's Room</title>
+<meta name="description" content="BAR 30's Room セミナーのお申し込みフォームです。ワイン・ウイスキー・カクテル・バーテンダー養成など各コースへお申し込みください。">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://30sseminar.search-mania.net/seminar_form.html">
+
+<!-- スマートフォン・アプリ内ブラウザ最適化 -->
+<meta name="format-detection" content="telephone=no, email=no, address=no">
+<meta name="theme-color" content="#3d0d1d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="30's Room 申込み">
+
+<!-- OGP（LINE・SNS・メッセンジャーアプリのリンクカード表示） -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://30sseminar.search-mania.net/seminar_form.html">
+<meta property="og:site_name" content="BAR 30's Room セミナー">
+<meta property="og:title" content="セミナーお申し込み | BAR 30's Room">
+<meta property="og:description" content="BAR 30's Room セミナーへのお申し込みフォームです。ワイン・ウイスキー・カクテル・バーテンダー養成など各コースへお申し込みください。">
+<meta property="og:image" content="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1200&h=630&fit=crop&q=80">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="セミナーお申し込み | BAR 30's Room">
+<meta name="twitter:description" content="BAR 30's Room セミナーへのお申し込みフォームです。">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=1200&h=630&fit=crop&q=80">
+
+<!-- ファビコン -->
 <link rel="icon" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png" type="image/png">
+<link rel="apple-touch-icon" href="https://res.cloudinary.com/dgs6qz3bd/image/upload/v1762307524/SearchMania%E3%83%AD%E3%82%B4_%E9%BB%92_hxaeuk.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Shippori+Mincho:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -38,6 +69,12 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 40px 16px 60px;
+  /* iPhone X以降のノッチ・ホームバー対応 */
+  padding-bottom: calc(60px + env(safe-area-inset-bottom));
+  padding-left: calc(16px + env(safe-area-inset-left));
+  padding-right: calc(16px + env(safe-area-inset-right));
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 body::before {
   content: '';
@@ -47,6 +84,15 @@ body::before {
     rgba(124,29,56,.04) 39px, rgba(124,29,56,.04) 40px
   );
   pointer-events: none; z-index: 0;
+}
+/* iOS Safari: position:fixed が正常に動作しない場合の対応 */
+@supports (-webkit-touch-callout: none) {
+  body::before { position: absolute; min-height: 100vh; }
+}
+/* タップ時のハイライト・選択抑制 */
+a, button, label, select, input[type="submit"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* ── Layout ──────────────────────────────────────────── */
