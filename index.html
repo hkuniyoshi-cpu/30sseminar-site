@@ -151,46 +151,30 @@ a, button {
   .cursor-glow.active { opacity: 1; }
 }
 
-/* ═══ スクロールプログレス（ウイスキーメーター） ═══════════════ */
+/* ═══ スクロールプログレス（ウイスキーグラス）═══════════════════ */
 .progress-meter {
   position: fixed;
-  right: 24px; top: 50%;
+  right: 26px; top: 50%;
   transform: translateY(-50%);
   z-index: 90;
   display: flex; flex-direction: column;
-  align-items: center; gap: 12px;
+  align-items: center; gap: 14px;
   pointer-events: none;
 }
-.progress-glass {
-  width: 22px; height: 60px;
-  border: 1px solid var(--border-strong);
-  border-radius: 2px 2px 5px 5px;
-  overflow: hidden;
-  position: relative;
-  background: rgba(10,6,5,0.6);
-  backdrop-filter: blur(4px);
+.whisky-glass {
+  width: 56px; height: 92px;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.7))
+          drop-shadow(0 0 22px rgba(232,193,105,0.25));
 }
-.progress-liquid {
-  position: absolute; left: 0; right: 0; bottom: 0;
-  height: 0%;
-  background: linear-gradient(180deg, rgba(232,193,105,0.9), var(--amber) 40%, var(--amber-deep));
-  box-shadow: 0 0 12px rgba(232,193,105,0.6);
-  transition: height 0.15s ease-out;
-}
-.progress-liquid::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 3px;
-  background: rgba(255,240,200,0.6);
-  border-radius: 50%;
-  filter: blur(1px);
-}
+.whisky-glass svg { width: 100%; height: 100%; display: block; }
 .progress-label {
   writing-mode: vertical-rl;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 9px;
-  letter-spacing: 0.4em;
+  font-style: italic;
+  font-size: 10px;
+  letter-spacing: 0.5em;
   color: var(--amber);
-  opacity: 0.7;
+  opacity: 0.75;
   text-transform: uppercase;
 }
 @media (max-width: 768px) { .progress-meter { display: none; } }
@@ -1216,10 +1200,84 @@ footer .footer-credit a:hover { opacity: 0.7; }
     <div class="vein-dot" id="veinDot"></div>
 </div>
 
-<!-- スクロールプログレス -->
+<!-- スクロールプログレス（ウイスキーグラス）-->
 <div class="progress-meter">
-    <div class="progress-glass">
-        <div class="progress-liquid" id="progressLiquid"></div>
+    <div class="whisky-glass">
+        <svg viewBox="0 0 80 130" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- ウイスキーの液体グラデーション -->
+                <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%"  stop-color="#f2d488"/>
+                    <stop offset="40%" stop-color="#d4a94a"/>
+                    <stop offset="100%" stop-color="#7a5219"/>
+                </linearGradient>
+                <!-- グラス本体のガラス質感グラデーション -->
+                <linearGradient id="glassBody" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%"  stop-color="rgba(255,255,255,0.14)"/>
+                    <stop offset="20%" stop-color="rgba(255,255,255,0.04)"/>
+                    <stop offset="80%" stop-color="rgba(255,255,255,0.02)"/>
+                    <stop offset="100%" stop-color="rgba(255,255,255,0.10)"/>
+                </linearGradient>
+                <!-- 液面のハイライト -->
+                <linearGradient id="surfaceGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="rgba(255,240,200,0.85)"/>
+                    <stop offset="100%" stop-color="rgba(255,240,200,0)"/>
+                </linearGradient>
+                <!-- グラス内側のクリップパス（ロックグラス形状：わずかに末広がり）-->
+                <clipPath id="glassInterior">
+                    <path d="M 14,14 L 66,14 L 62,104 L 18,104 Z"/>
+                </clipPath>
+            </defs>
+
+            <!-- グラス本体（背景）-->
+            <path d="M 14,14 L 66,14 L 62,104 L 18,104 Z"
+                  fill="url(#glassBody)"/>
+
+            <!-- ウイスキー液体（クリップされて下から溜まる）-->
+            <g clip-path="url(#glassInterior)">
+                <!-- 液体本体 -->
+                <rect id="whiskyLiquid" x="0" y="130" width="80" height="0"
+                      fill="url(#wg)"/>
+                <!-- 液面のハイライト（薄い光の帯）-->
+                <rect id="whiskySurface" x="14" y="130" width="52" height="2"
+                      fill="url(#surfaceGrad)"/>
+                <!-- 液面の泡・反射 -->
+                <ellipse id="whiskyGloss" cx="40" cy="130" rx="20" ry="1.2"
+                         fill="rgba(255,245,210,0.55)"/>
+            </g>
+
+            <!-- グラス縁（アウトライン）-->
+            <path d="M 14,14 L 66,14 L 62,104 L 18,104 Z"
+                  fill="none" stroke="rgba(232,193,105,0.55)" stroke-width="1"/>
+
+            <!-- 上部リム（グラスの厚み）-->
+            <ellipse cx="40" cy="14" rx="26" ry="2.2"
+                     fill="rgba(232,193,105,0.15)"
+                     stroke="rgba(232,193,105,0.85)" stroke-width="0.8"/>
+            <ellipse cx="40" cy="14" rx="24" ry="1.6"
+                     fill="rgba(10,6,5,0.6)"/>
+
+            <!-- 内側の左ハイライト（ガラスの光沢）-->
+            <path d="M 20,20 Q 18,60 22,100"
+                  fill="none" stroke="rgba(255,255,255,0.22)"
+                  stroke-width="1.2" stroke-linecap="round"/>
+            <!-- 内側の右ハイライト（細く）-->
+            <path d="M 60,20 Q 61,60 59,100"
+                  fill="none" stroke="rgba(255,255,255,0.10)"
+                  stroke-width="0.8" stroke-linecap="round"/>
+
+            <!-- グラスの底（厚い底面）-->
+            <ellipse cx="40" cy="104" rx="22" ry="3"
+                     fill="rgba(10,6,5,0.7)"
+                     stroke="rgba(232,193,105,0.5)" stroke-width="0.8"/>
+            <!-- 底面の厚み（ロックグラス特有）-->
+            <path d="M 18,104 Q 40,112 62,104 L 60,116 Q 40,122 20,116 Z"
+                  fill="rgba(50,30,15,0.9)"
+                  stroke="rgba(232,193,105,0.4)" stroke-width="0.8"/>
+            <!-- 底の中央反射 -->
+            <ellipse cx="40" cy="118" rx="12" ry="1.5"
+                     fill="rgba(232,193,105,0.25)"/>
+        </svg>
     </div>
     <div class="progress-label">Pour</div>
 </div>
@@ -1572,16 +1630,35 @@ window.addEventListener('load', () => {
 });
 
 // ══════════════════════════════════════════════════
-// スクロールプログレスメーター（ウイスキーが注がれる）
+// ウイスキーグラス：スクロールに応じて琥珀色の液体が溜まる
+// （液面の光沢と液面波もそれに追従して上がっていく）
 // ══════════════════════════════════════════════════
-const liquid = document.getElementById('progressLiquid');
-function updateProgress() {
+const whiskyLiquid  = document.getElementById('whiskyLiquid');
+const whiskySurface = document.getElementById('whiskySurface');
+const whiskyGloss   = document.getElementById('whiskyGloss');
+
+const BOTTOM_Y  = 104;   // グラス底のY座標
+const MAX_TOP_Y = 22;    // 満タン時の液面Y座標（縁より少し下で自然に見せる）
+const MAX_FILL  = BOTTOM_Y - MAX_TOP_Y;   // 満タン時の液体高さ (=82)
+
+function updateWhisky() {
   const h = document.documentElement;
-  const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
-  liquid.style.height = Math.min(scrolled * 100, 100) + '%';
+  const p = Math.min(Math.max(h.scrollTop / (h.scrollHeight - h.clientHeight), 0), 1);
+  const fillH = MAX_FILL * p;
+  const topY  = BOTTOM_Y - fillH;
+
+  whiskyLiquid.setAttribute('y', topY);
+  whiskyLiquid.setAttribute('height', fillH);
+  whiskySurface.setAttribute('y', topY - 1);
+  whiskyGloss.setAttribute('cy', topY);
+  // 液面のわずかなゆらぎ（スクロール時に少しだけ動く）
+  const wobble = Math.sin(performance.now() * 0.003) * 0.4;
+  whiskyGloss.setAttribute('ry', 1 + Math.abs(wobble));
 }
-window.addEventListener('scroll', updateProgress, { passive: true });
-updateProgress();
+window.addEventListener('scroll', updateWhisky, { passive: true });
+// 液面の常時ゆらぎ（呼吸するように）
+function whiskyBreath() { updateWhisky(); requestAnimationFrame(whiskyBreath); }
+whiskyBreath();
 
 // ══════════════════════════════════════════════════
 // 汎用フェードアップ（IntersectionObserver）
